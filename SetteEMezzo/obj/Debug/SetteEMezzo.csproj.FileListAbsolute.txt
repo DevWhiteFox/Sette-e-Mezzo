@@ -1,0 +1,36 @@
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\bin\Debug\SetteEMezzo.exe.config
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\bin\Debug\SetteEMezzo.exe
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\bin\Debug\SetteEMezzo.pdb
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.csprojAssemblyReference.cache
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.Properties.Resources.resources
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.csproj.GenerateResource.cache
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.csproj.CoreCompileInputs.cache
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.exe
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.pdb
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.Menu.resources
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.Lobby.resources
+C:\Users\david\Google Drive\syncDrive\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.Game.resources
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\bin\Debug\SetteEMezzo.exe.config
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\bin\Debug\SetteEMezzo.exe
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\bin\Debug\SetteEMezzo.pdb
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.csprojAssemblyReference.cache
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.Game.resources
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.Lobby.resources
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.Menu.resources
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.Properties.Resources.resources
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.csproj.GenerateResource.cache
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.csproj.CoreCompileInputs.cache
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.exe
+C:\Users\david\Google Drive\syncDrive\Coding\C#\WindowsForm\SetteEMezzo\SetteEMezzo\obj\Debug\SetteEMezzo.pdb
+C:\Users\balan\Desktop\SetteEMezzo\bin\Debug\SetteEMezzo.exe.config
+C:\Users\balan\Desktop\SetteEMezzo\bin\Debug\SetteEMezzo.exe
+C:\Users\balan\Desktop\SetteEMezzo\bin\Debug\SetteEMezzo.pdb
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.csprojAssemblyReference.cache
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.Game.resources
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.Lobby.resources
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.Menu.resources
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.Properties.Resources.resources
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.csproj.GenerateResource.cache
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.csproj.CoreCompileInputs.cache
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.exe
+C:\Users\balan\Desktop\SetteEMezzo\obj\Debug\SetteEMezzo.pdb
