@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace SetteEMezzo
 {
     class CardSystem
-    {
-             
+    {            
 
         public void start()
         {
@@ -38,13 +36,5 @@ namespace SetteEMezzo
                     players.Add(estratto);
                 }
         }
-
-
-        /*
-         *  array banchiere B2 null
-         *  array players B3 0
-         * 
-         *  Seme proprietari
-         */
     }
 }

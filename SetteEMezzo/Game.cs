@@ -7,6 +7,7 @@ namespace SetteEMezzo
     {
         string SEAT_IS_AVAILABLE = "#";
         List<Label> seatingLabel;
+        List<Player> players;
         int assignedSeats;
         string seatingArrangement;
 
@@ -23,6 +24,7 @@ namespace SetteEMezzo
 
             ArrangementByNumberOfPlayers();
             AssignSeatsOfAllPlayer();
+            InitOfPlayersPresent();
         }
 
         private void InitPresenceOfAllPlayer()
@@ -77,6 +79,20 @@ namespace SetteEMezzo
             seatingLabel[seat].Text = StatusGame.Players[assignedSeats];
             seatingLabel[seat].Visible = true;
             assignedSeats++;
+        }
+
+        private void InitOfPlayersPresent()
+        {
+            foreach (Label seat in seatingLabel)
+            {
+                if(seat.Visible == true)
+                {
+                    Player player = new Player();
+                    player.Name = seat.Text;
+                    player.OwnSeat = seat;
+                    players.Add(player);
+                }
+            }
         }
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
