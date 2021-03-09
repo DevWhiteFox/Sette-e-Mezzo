@@ -53,7 +53,7 @@ namespace SetteEMezzo
             this.exit.TabIndex = 1;
             this.exit.Text = "Esci";
             this.exit.UseVisualStyleBackColor = true;
-            this.exit.Click += new System.EventHandler(this.exit_Click);
+            this.exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // Menu
             // 

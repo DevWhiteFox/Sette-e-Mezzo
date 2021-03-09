@@ -5,22 +5,23 @@ namespace SetteEMezzo
 {
     public partial class Menu : Form
     {
+        private Lobby InstanceLobby;
+
         public Menu()
         {
             InitializeComponent();
-            StatusGame.InstanceMenu = this;
         }
 
-        private void exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         private void Start_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            StatusGame.InstanceLobby = new Lobby();
-            StatusGame.InstanceLobby.Show();
+            Hide();
+            if (InstanceLobby == null) InstanceLobby = new Lobby();
+            InstanceLobby.Show();
         }
 
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)

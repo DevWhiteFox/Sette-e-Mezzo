@@ -15,34 +15,36 @@ namespace SetteEMezzo
         private byte choiceNumber = 0;
         private bool pressStart = false;
 
+        private Game InstanceGame;
+
         public Lobby()
         {
             InitializeComponent();
-            initForm();
+            InitForm();
         }
 
-        private void initForm()
+        private void InitForm()
         {
-            initLabel();
-            setEnableSetPlayers(false);
-            setEnableCount(true);
+            InitLabel();
+            SetEnableSetPlayers(false);
+            SetEnableCount(true);
         }
 
-        private void setEnableSetPlayers(bool state)
+        private void SetEnableSetPlayers(bool state)
         {
             namePlayer.Enabled = state;
             playerLabel.Enabled = state;
             addPlayer.Enabled = state;
         }
 
-        private void setEnableCount(bool state)
+        private void SetEnableCount(bool state)
         {
             numPlayerLabel.Enabled = state;
             choiceNumberPlayers.Enabled = state;
             confirmNPlayer.Enabled = state;
         }
 
-        private void initLabel()
+        private void InitLabel()
         {
             numPlayerLabel.Text = "Numero Players: ";
             playerLabel.Text = "Nome Giocatore ";
@@ -51,32 +53,32 @@ namespace SetteEMezzo
         private void Play_Click(object sender, EventArgs e)
         {
             pressStart = true;
-            this.Close();
-            StatusGame.InstanceGame = new Game();
-            StatusGame.InstanceGame.Show();
+            Hide();
+            if(InstanceGame == null) InstanceGame = new Game();
+            InstanceGame.Show();
         }
 
-        private void updatePlayerLabelCount(string reasonCall)
+        private void UpdatePlayerLabelCount(string reasonCall)
         {
-            playerLabel.Text = reasonCall + " (" + (StatusGame.Players.Count) + "/" + choiceNumber + ")";
+            playerLabel.Text = reasonCall + " (" + (StatusGame.RegistredNames.Count) + "/" + choiceNumber + ")";
         }
 
-        private void addPlayerInGroup()
+        private void AddPlayerInGroup()
         {
-            StatusGame.Players.Add(namePlayer.Text);
+            StatusGame.RegistredNames.Add(namePlayer.Text);
             namePlayer.Text = "";
         }
 
-        private void confirmNPlayer_Click(object sender, EventArgs e)
+        private void ConfirmNPlayer_Click(object sender, EventArgs e)
         {   //Confermiamo il numero di player
 
             choiceNumber= (byte)choiceNumberPlayers.Value;
             if (choiceNumber>= StatusGame.MinPlayers && choiceNumber<= StatusGame.MaxPlayers)
             {
                 numPlayerLabel.Text = DEFAULT_NUMBER_PLAYER + choiceNumber;
-                updatePlayerLabelCount(DEFAULT_PLAYER_NAME);
-                setEnableSetPlayers(true);
-                setEnableCount(false);
+                UpdatePlayerLabelCount(DEFAULT_PLAYER_NAME);
+                SetEnableSetPlayers(true);
+                SetEnableCount(false);
             }
             else
             {
@@ -84,23 +86,23 @@ namespace SetteEMezzo
             }
         }
 
-        private void addPlayer_Click(object sender, EventArgs e)
+        private void AddPlayer_Click(object sender, EventArgs e)
         {   //Aggiungiamo il nome dei player in un elenco
 
-            if (StatusGame.Players.Count != choiceNumber)
+            if (StatusGame.RegistredNames.Count != choiceNumber)
             {
                 if (namePlayer.Text.Length <= StatusGame.Maxcharacters &&
                     namePlayer.Text.Length > 0) {
 
-                    addPlayerInGroup();
-                    updatePlayerLabelCount(SUCCESS_PLAYER_NAME);
+                    AddPlayerInGroup();
+                    UpdatePlayerLabelCount(SUCCESS_PLAYER_NAME);
                 }else{
-                    updatePlayerLabelCount(WRONG_PLAYER_NAME);
+                    UpdatePlayerLabelCount(WRONG_PLAYER_NAME);
                 }
 
-                if (StatusGame.Players.Count == choiceNumber)
+                if (StatusGame.RegistredNames.Count == choiceNumber)
                 {
-                    setEnableSetPlayers(false);
+                    SetEnableSetPlayers(false);
                     Play.Enabled = true;
                 }
             }
@@ -109,8 +111,8 @@ namespace SetteEMezzo
         private void Lobby_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (!pressStart) { 
-                StatusGame.InstanceMenu.Show();
-                StatusGame.Players.Clear();
+                Menu.GetForm().Close();
+                StatusGame.RegistredNames.Clear();
             }
         }
     }

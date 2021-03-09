@@ -1,16 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SetteEMezzo
 {
     public partial class Game : Form
     {
-        string SEAT_IS_AVAILABLE = "#";
-        List<Label> seatingLabel;
-        List<Player> players;
-        int assignedSeats;
-        string seatingArrangement;
-
         public Game()
         {
             InitializeComponent();
@@ -21,49 +16,50 @@ namespace SetteEMezzo
         {
             InitPresenceOfAllPlayer();
             DinamicStorePlayerLabel();
-
             ArrangementByNumberOfPlayers();
             AssignSeatsOfAllPlayer();
             InitOfPlayersPresent();
+
+            CardSystem.Start();
+            LoadCardOfPlayer(Table.Players.ElementAt(0));
         }
 
         private void InitPresenceOfAllPlayer()
         {
-            player1.Visible =
-            player2.Visible =
-            player3.Visible =
-            player4.Visible =
-            player5.Visible = false;
+            Player1.Visible =
+            Player2.Visible =
+            Player3.Visible =
+            Player4.Visible =
+            Player5.Visible = false;
         }
 
         private void DinamicStorePlayerLabel()
         {
-            seatingLabel = new List<Label>
-            {
-                player1,
-                player2,
-                player3,
-                player4,
-                player5
+            Table.seatingLabel = new List<Label> {
+                Player1,
+                Player2,
+                Player3,
+                Player4,
+                Player5
             };
         }
 
         private void ArrangementByNumberOfPlayers()
         {
-            switch (StatusGame.Players.Count)
+            switch (StatusGame.RegistredNames.Count)
             {
-                    case 2: seatingArrangement = "O#O#O"; break;
-                    case 3: seatingArrangement = "#O#O#"; break;
-                    case 4: seatingArrangement = "##O##"; break;
-                    case 5: seatingArrangement = "#####"; break;
-                    default: seatingArrangement = "OOOOO"; break;
+                case 2: Table.seatingArrangement = "O#O#O"; break;
+                case 3: Table.seatingArrangement = "#O#O#"; break;
+                case 4: Table.seatingArrangement = "##O##"; break;
+                case 5: Table.seatingArrangement = "#####"; break;
+                default: Table.seatingArrangement = "OOOOO"; break;
             }
         }
 
         private void AssignSeatsOfAllPlayer()
         {
-            assignedSeats = 0;
-            for (int seat = 0; seat < seatingArrangement.Length; seat++)
+            Table.assignedSeats = 0;
+            for (int seat = 0; seat < Table.seatingArrangement.Length; seat++)
             {
                 if(SeatIsSuitable(seat)) AssignSinglePlayerSeats(seat);
             }
@@ -71,28 +67,45 @@ namespace SetteEMezzo
 
         private bool SeatIsSuitable(int seat)
         {
-            return seatingArrangement.Substring(seat, 1) == SEAT_IS_AVAILABLE;
+            return Table.seatingArrangement.Substring(seat, 1) == Table.SEAT_IS_AVAILABLE;
         }
 
         private void AssignSinglePlayerSeats(int seat)
         {
-            seatingLabel[seat].Text = StatusGame.Players[assignedSeats];
-            seatingLabel[seat].Visible = true;
-            assignedSeats++;
+            Table.seatingLabel[seat].Text = StatusGame.RegistredNames.ElementAt(index: Table.assignedSeats);
+            Table.seatingLabel[seat].Visible = true;
+            Table.assignedSeats++;
         }
 
         private void InitOfPlayersPresent()
         {
-            foreach (Label seat in seatingLabel)
+            for (int seat = 0; seat < Table.seatingArrangement.Length; seat++)
             {
-                if(seat.Visible == true)
-                {
-                    Player player = new Player();
-                    player.Name = seat.Text;
-                    player.OwnSeat = seat;
-                    players.Add(player);
-                }
+                if (SeatIsSuitable(seat)) RegistreAPlayer(Table.seatingLabel[seat]);
             }
+        }
+
+        private void RegistreAPlayer(Label seat)
+        {
+            Player player = new Player
+            {
+                Name = seat.Text,
+                OwnSeat = seat
+            };
+            Table.Players.Add(player);
+        }
+               
+
+        private void LoadCardOfPlayer(Player player)
+        {
+            OwnCardList.BeginUpdate();
+
+            foreach(Card cards in player.Cards)
+            {
+                OwnCardList.Items.Add(cards.Seed + "" + cards.Numeration);
+            }
+
+            OwnCardList.EndUpdate();
         }
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)

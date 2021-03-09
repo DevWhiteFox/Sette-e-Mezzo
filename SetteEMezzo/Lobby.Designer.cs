@@ -44,7 +44,7 @@
             this.Play.Location = new System.Drawing.Point(35, 184);
             this.Play.Margin = new System.Windows.Forms.Padding(2);
             this.Play.Name = "Play";
-            this.Play.Size = new System.Drawing.Size(127, 46);
+            this.Play.Size = new System.Drawing.Size(166, 46);
             this.Play.TabIndex = 0;
             this.Play.Text = "Play";
             this.Play.UseVisualStyleBackColor = true;
@@ -55,7 +55,7 @@
             this.choiceNumberPlayers.Location = new System.Drawing.Point(35, 32);
             this.choiceNumberPlayers.Margin = new System.Windows.Forms.Padding(2);
             this.choiceNumberPlayers.Name = "choiceNumberPlayers";
-            this.choiceNumberPlayers.Size = new System.Drawing.Size(127, 20);
+            this.choiceNumberPlayers.Size = new System.Drawing.Size(164, 20);
             this.choiceNumberPlayers.TabIndex = 1;
             // 
             // numPlayerLabel
@@ -73,7 +73,7 @@
             this.namePlayer.Location = new System.Drawing.Point(35, 105);
             this.namePlayer.Margin = new System.Windows.Forms.Padding(2);
             this.namePlayer.Name = "namePlayer";
-            this.namePlayer.Size = new System.Drawing.Size(129, 20);
+            this.namePlayer.Size = new System.Drawing.Size(166, 20);
             this.namePlayer.TabIndex = 3;
             // 
             // playerLabel
@@ -91,28 +91,28 @@
             this.addPlayer.Location = new System.Drawing.Point(35, 126);
             this.addPlayer.Margin = new System.Windows.Forms.Padding(2);
             this.addPlayer.Name = "addPlayer";
-            this.addPlayer.Size = new System.Drawing.Size(127, 21);
+            this.addPlayer.Size = new System.Drawing.Size(164, 21);
             this.addPlayer.TabIndex = 5;
             this.addPlayer.Text = "Registra Nome";
             this.addPlayer.UseVisualStyleBackColor = true;
-            this.addPlayer.Click += new System.EventHandler(this.addPlayer_Click);
+            this.addPlayer.Click += new System.EventHandler(this.AddPlayer_Click);
             // 
             // confirmNPlayer
             // 
             this.confirmNPlayer.Location = new System.Drawing.Point(35, 54);
             this.confirmNPlayer.Margin = new System.Windows.Forms.Padding(2);
             this.confirmNPlayer.Name = "confirmNPlayer";
-            this.confirmNPlayer.Size = new System.Drawing.Size(127, 20);
+            this.confirmNPlayer.Size = new System.Drawing.Size(164, 20);
             this.confirmNPlayer.TabIndex = 6;
             this.confirmNPlayer.Text = "Conferma";
             this.confirmNPlayer.UseVisualStyleBackColor = true;
-            this.confirmNPlayer.Click += new System.EventHandler(this.confirmNPlayer_Click);
+            this.confirmNPlayer.Click += new System.EventHandler(this.ConfirmNPlayer_Click);
             // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(198, 243);
+            this.ClientSize = new System.Drawing.Size(229, 243);
             this.Controls.Add(this.confirmNPlayer);
             this.Controls.Add(this.addPlayer);
             this.Controls.Add(this.playerLabel);

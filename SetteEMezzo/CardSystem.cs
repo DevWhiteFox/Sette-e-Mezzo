@@ -1,39 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SetteEMezzo
 {
-    class CardSystem
-    {            
+    public static class CardSystem
+    {
+        private static readonly List<Card> bancone = new List<Card>();
 
-        public void start()
+        public static void Start()
         {
-            generateCard();
-            giveAll(1);
+            GenerateCard();
+            GiveAll(1);
         }
 
-        private void generateCard()
+        private static void GenerateCard()
         {
-            foreach (char seme in semi)
+            foreach (char seed in StatusGame.Seed)
             {
-                for (int i = 1; i <= MAX_NUMBER_CARD; i++)
+                for (int i = 1; i <= StatusGame.MaxNumberOfCard; i++)
                 {
-                    bancone.Add(new Card(semi + "" + i, 'x'));
+                    Card card = new Card
+                    {
+                        Seed = seed,
+                        Numeration = i
+                    };
+                    bancone.Add(card);
                 }
             }
         }
 
-        private void giveAll(int eachTime)
+        private static void GiveAll(int eachTime)
         {
             Random random = new Random();
 
             for(int i=0; i < eachTime; i++)
-                for(int j=0; j < StatusGame.Players.Count; j++)
+                for(int j=0; j < Table.Players.Count; j++)
                 {
                     Card estratto = bancone.ElementAt(random.Next(0, bancone.Count));
                     bancone.Remove(estratto);
-                    estratto.Proprietario = (char) j;
-                    players.Add(estratto);
+                    Table.Players.ElementAt(j).Cards.Add(estratto);
                 }
         }
     }
