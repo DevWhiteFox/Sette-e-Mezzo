@@ -96,6 +96,7 @@ namespace SetteEMezzo
 
                     AddPlayerInGroup();
                     UpdatePlayerLabelCount(SUCCESS_PLAYER_NAME);
+
                 }else{
                     UpdatePlayerLabelCount(WRONG_PLAYER_NAME);
                 }

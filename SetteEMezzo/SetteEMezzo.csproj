@@ -121,11 +121,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resource\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resource\Next.png" />
+    <None Include="Resource\hand_card.png" />
+    <None Include="Resource\table.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

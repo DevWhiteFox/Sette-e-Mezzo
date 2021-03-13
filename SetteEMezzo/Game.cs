@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -6,6 +7,7 @@ namespace SetteEMezzo
 {
     public partial class Game : Form
     {
+
         public Game()
         {
             InitializeComponent();
@@ -61,7 +63,7 @@ namespace SetteEMezzo
             Table.assignedSeats = 0;
             for (int seat = 0; seat < Table.seatingArrangement.Length; seat++)
             {
-                if(SeatIsSuitable(seat)) AssignSinglePlayerSeats(seat);
+                if (SeatIsSuitable(seat)) AssignSinglePlayerSeats(seat);
             }
         }
 
@@ -94,13 +96,13 @@ namespace SetteEMezzo
             };
             Table.Players.Add(player);
         }
-               
+
 
         private void LoadCardOfPlayer(Player player)
         {
             OwnCardList.BeginUpdate();
 
-            foreach(Card cards in player.Cards)
+            foreach (Card cards in player.Cards)
             {
                 OwnCardList.Items.Add(cards.Seed + "" + cards.Numeration);
             }
@@ -111,6 +113,11 @@ namespace SetteEMezzo
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void NextTurn_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

@@ -122,7 +122,7 @@
             this.Controls.Add(this.Play);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Lobby";
-            this.Text = "SetteEMezzo";
+            this.Text = "Lobby";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lobby_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.choiceNumberPlayers)).EndInit();
             this.ResumeLayout(false);

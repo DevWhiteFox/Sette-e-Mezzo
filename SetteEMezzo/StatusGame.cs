@@ -6,8 +6,8 @@ namespace SetteEMezzo
     {
         private static readonly byte MAX_PLAYERS = 5;
         private static readonly byte MIN_PLAYERS = 2;
-        private static readonly byte MAX_CHARACTERS = 10;
-        private static readonly byte MAX_NUMBER_CARD = 10;
+        private static readonly byte MAX_CHARACTERS = 15;
+        private static readonly byte MAX_NUMBER_CARD = 10; //MAX_NUMBER_CARD * number of seed = nCard
 
         private static char[] seed = { 'B', 'O', 'C', 'S' };
 

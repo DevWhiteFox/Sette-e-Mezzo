@@ -11,7 +11,7 @@ namespace SetteEMezzo
         public static void Start()
         {
             GenerateCard();
-            GiveAll(1);
+            GiveOneCardToEachPlayers(5);
         }
 
         private static void GenerateCard()
@@ -30,17 +30,30 @@ namespace SetteEMezzo
             }
         }
 
-        private static void GiveAll(int eachTime)
+        private static bool GiveOneCardToEachPlayers(int eachTime)
         {
             Random random = new Random();
+            if (EnoughCardsForEveryone(eachTime))
+            {
+                for (int i = 0; i < eachTime; i++)
+                    for (int j = 0; j < Table.Players.Count; j++)
+                        GiveCardToPlayerByIndex(random, j);
 
-            for(int i=0; i < eachTime; i++)
-                for(int j=0; j < Table.Players.Count; j++)
-                {
-                    Card estratto = bancone.ElementAt(random.Next(0, bancone.Count));
-                    bancone.Remove(estratto);
-                    Table.Players.ElementAt(j).Cards.Add(estratto);
-                }
+                return true;
+            }
+            return false;
+        }   
+
+        private static bool EnoughCardsForEveryone(int eachTime)
+        {
+            return bancone.Count >= (Table.Players.Count * eachTime);
+        }
+
+        private static void GiveCardToPlayerByIndex(Random random, int j)
+        {
+            Card estratto = bancone.ElementAt(random.Next(0, bancone.Count));
+            bancone.Remove(estratto);
+            Table.Players.ElementAt(j).Cards.Add(estratto);
         }
     }
 }
