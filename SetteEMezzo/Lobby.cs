@@ -16,6 +16,7 @@ namespace SetteEMezzo
         private bool pressStart = false;
 
         private Game InstanceGame;
+        private Menu InstanceMenu;
 
         public Lobby()
         {
@@ -23,11 +24,17 @@ namespace SetteEMezzo
             InitForm();
         }
 
+        public void ImportMenuInstance(Menu instance)
+        {
+            InstanceMenu = instance;
+        }
+
         private void InitForm()
         {
             InitLabel();
             SetEnableSetPlayers(false);
             SetEnableCount(true);
+            StatusGame.RegistredNames.Clear();
         }
 
         private void SetEnableSetPlayers(bool state)
@@ -54,7 +61,8 @@ namespace SetteEMezzo
         {
             pressStart = true;
             Hide();
-            if(InstanceGame == null) InstanceGame = new Game();
+            InstanceGame = new Game();
+            InstanceGame.ImportMenuInstance(InstanceMenu);
             InstanceGame.Show();
         }
 
@@ -109,12 +117,9 @@ namespace SetteEMezzo
             }
         }
 
-        private void Lobby_FormClosed(object sender, FormClosedEventArgs e)
+          private void Lobby_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (!pressStart) { 
-                Menu.GetForm().Close();
-                StatusGame.RegistredNames.Clear();
-            }
+            if (!pressStart) InstanceMenu.Show();
         }
     }
 }

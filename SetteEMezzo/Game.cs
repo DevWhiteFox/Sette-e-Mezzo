@@ -7,11 +7,17 @@ namespace SetteEMezzo
 {
     public partial class Game : Form
     {
+        private Menu InstanceMenu;
 
         public Game()
         {
             InitializeComponent();
             InitGame();
+        }
+
+        public void ImportMenuInstance(Menu instance)
+        {
+            InstanceMenu = instance;
         }
 
         private void InitGame()
@@ -23,7 +29,15 @@ namespace SetteEMezzo
             InitOfPlayersPresent();
 
             CardSystem.Start();
-            LoadCardOfPlayer(Table.Players.ElementAt(0));
+
+            FormVisualOperationInit();
+            GameLoop.DoNextTurnOperation();
+        }
+
+        private void FormVisualOperationInit()
+        {
+            FormVisualOperation.OwnCardList = OwnCardList;
+            FormVisualOperation.WhosTheTurn = WhosTheTurn;
         }
 
         private void InitPresenceOfAllPlayer()
@@ -98,25 +112,22 @@ namespace SetteEMezzo
         }
 
 
-        private void LoadCardOfPlayer(Player player)
-        {
-            OwnCardList.BeginUpdate();
-
-            foreach (Card cards in player.Cards)
-            {
-                OwnCardList.Items.Add(cards.Seed + "" + cards.Numeration);
-            }
-
-            OwnCardList.EndUpdate();
-        }
-
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            ResetSession();
+            InstanceMenu.Show();
+        }
+
+        private void ResetSession()
+        {
+            Table.Players.Clear();
+            Table.seatingLabel.Clear();
+
         }
 
         private void NextTurn_Click(object sender, System.EventArgs e)
         {
+            GameLoop.DoNextTurnOperation();
 
         }
     }

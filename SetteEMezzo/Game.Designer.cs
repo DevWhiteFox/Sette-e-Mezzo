@@ -174,7 +174,7 @@ namespace SetteEMezzo
             this.Controls.Add(this.OwnCardList);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
-            this.Text = "Form1";
+            this.Text = "SetteEMezzo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Game_FormClosed);
             this.Tavolo.ResumeLayout(false);
             this.Tavolo.PerformLayout();

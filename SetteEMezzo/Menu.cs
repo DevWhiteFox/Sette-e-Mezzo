@@ -20,7 +20,9 @@ namespace SetteEMezzo
         private void Start_Click(object sender, EventArgs e)
         {
             Hide();
-            if (InstanceLobby == null) InstanceLobby = new Lobby();
+
+            InstanceLobby = new Lobby();
+            InstanceLobby.ImportMenuInstance(this);
             InstanceLobby.Show();
         }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lobby));
             this.Play = new System.Windows.Forms.Button();
             this.choiceNumberPlayers = new System.Windows.Forms.NumericUpDown();
             this.numPlayerLabel = new System.Windows.Forms.Label();
@@ -120,6 +121,7 @@
             this.Controls.Add(this.numPlayerLabel);
             this.Controls.Add(this.choiceNumberPlayers);
             this.Controls.Add(this.Play);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Lobby";
             this.Text = "Lobby";
