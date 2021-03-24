@@ -8,7 +8,7 @@ namespace SetteEMezzo
         public static string SEAT_IS_AVAILABLE = "#";
 
         public static List<Player> Players { get; } = new List<Player>();
-        public static List<Label> seatingLabel;
+        public static List<Label> SeatingLabel { get; set; }
 
         public static int assignedSeats;
         public static string seatingArrangement;

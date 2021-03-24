@@ -32,7 +32,7 @@ namespace SetteEMezzo
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.OwnCardList = new System.Windows.Forms.ListBox();
             this.WhosTheTurn = new System.Windows.Forms.Label();
-            this.NextTurn = new System.Windows.Forms.Button();
+            this.PutCardOnTable = new System.Windows.Forms.Button();
             this.PlayTheCard = new System.Windows.Forms.Button();
             this.Tavolo = new System.Windows.Forms.Panel();
             this.Master = new System.Windows.Forms.Label();
@@ -51,8 +51,9 @@ namespace SetteEMezzo
             this.OwnCardList.Location = new System.Drawing.Point(11, 361);
             this.OwnCardList.Margin = new System.Windows.Forms.Padding(2);
             this.OwnCardList.Name = "OwnCardList";
-            this.OwnCardList.Size = new System.Drawing.Size(222, 134);
+            this.OwnCardList.Size = new System.Drawing.Size(133, 134);
             this.OwnCardList.TabIndex = 8;
+            this.OwnCardList.SelectedIndexChanged += new System.EventHandler(this.OwnCardList_SelectedIndexChanged);
             // 
             // WhosTheTurn
             // 
@@ -63,26 +64,27 @@ namespace SetteEMezzo
             this.WhosTheTurn.TabIndex = 10;
             this.WhosTheTurn.Text = "WhosTheTurn";
             // 
-            // NextTurn
+            // PutCardOnTable
             // 
-            this.NextTurn.BackgroundImage = global::SetteEMezzo.Properties.Resources.Next;
-            this.NextTurn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.NextTurn.Location = new System.Drawing.Point(380, 361);
-            this.NextTurn.Name = "NextTurn";
-            this.NextTurn.Size = new System.Drawing.Size(82, 134);
-            this.NextTurn.TabIndex = 12;
-            this.NextTurn.UseVisualStyleBackColor = true;
-            this.NextTurn.Click += new System.EventHandler(this.NextTurn_Click);
+            this.PutCardOnTable.BackgroundImage = global::SetteEMezzo.Properties.Resources.Hand_Holding_Playing_Cards_2_512;
+            this.PutCardOnTable.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PutCardOnTable.Location = new System.Drawing.Point(311, 361);
+            this.PutCardOnTable.Name = "PutCardOnTable";
+            this.PutCardOnTable.Size = new System.Drawing.Size(136, 133);
+            this.PutCardOnTable.TabIndex = 15;
+            this.PutCardOnTable.UseVisualStyleBackColor = true;
+            this.PutCardOnTable.Click += new System.EventHandler(this.PutCardOnTable_Click);
             // 
             // PlayTheCard
             // 
             this.PlayTheCard.BackgroundImage = global::SetteEMezzo.Properties.Resources.hand_card;
             this.PlayTheCard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayTheCard.Location = new System.Drawing.Point(238, 361);
+            this.PlayTheCard.Location = new System.Drawing.Point(169, 361);
             this.PlayTheCard.Name = "PlayTheCard";
             this.PlayTheCard.Size = new System.Drawing.Size(136, 133);
             this.PlayTheCard.TabIndex = 11;
             this.PlayTheCard.UseVisualStyleBackColor = true;
+            this.PlayTheCard.Click += new System.EventHandler(this.PlayTheCard_Click);
             // 
             // Tavolo
             // 
@@ -98,24 +100,24 @@ namespace SetteEMezzo
             this.Tavolo.Location = new System.Drawing.Point(11, 11);
             this.Tavolo.Margin = new System.Windows.Forms.Padding(2);
             this.Tavolo.Name = "Tavolo";
-            this.Tavolo.Size = new System.Drawing.Size(451, 324);
+            this.Tavolo.Size = new System.Drawing.Size(468, 324);
             this.Tavolo.TabIndex = 9;
             // 
             // Master
             // 
             this.Master.AutoSize = true;
             this.Master.BackColor = System.Drawing.SystemColors.Control;
-            this.Master.Location = new System.Drawing.Point(199, 53);
+            this.Master.Location = new System.Drawing.Point(222, 44);
             this.Master.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Master.Name = "Master";
-            this.Master.Size = new System.Drawing.Size(38, 13);
+            this.Master.Size = new System.Drawing.Size(39, 13);
             this.Master.TabIndex = 5;
-            this.Master.Text = "Banco";
+            this.Master.Text = "Master";
             // 
             // Player5
             // 
             this.Player5.AutoSize = true;
-            this.Player5.Location = new System.Drawing.Point(391, 103);
+            this.Player5.Location = new System.Drawing.Point(403, 94);
             this.Player5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Player5.Name = "Player5";
             this.Player5.Size = new System.Drawing.Size(42, 13);
@@ -125,7 +127,7 @@ namespace SetteEMezzo
             // Player1
             // 
             this.Player1.AutoSize = true;
-            this.Player1.Location = new System.Drawing.Point(2, 103);
+            this.Player1.Location = new System.Drawing.Point(0, 94);
             this.Player1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Player1.Name = "Player1";
             this.Player1.Size = new System.Drawing.Size(42, 13);
@@ -135,7 +137,7 @@ namespace SetteEMezzo
             // Player4
             // 
             this.Player4.AutoSize = true;
-            this.Player4.Location = new System.Drawing.Point(345, 216);
+            this.Player4.Location = new System.Drawing.Point(357, 207);
             this.Player4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Player4.Name = "Player4";
             this.Player4.Size = new System.Drawing.Size(42, 13);
@@ -145,7 +147,7 @@ namespace SetteEMezzo
             // Player3
             // 
             this.Player3.AutoSize = true;
-            this.Player3.Location = new System.Drawing.Point(199, 274);
+            this.Player3.Location = new System.Drawing.Point(222, 265);
             this.Player3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Player3.Name = "Player3";
             this.Player3.Size = new System.Drawing.Size(42, 13);
@@ -155,7 +157,7 @@ namespace SetteEMezzo
             // Player2
             // 
             this.Player2.AutoSize = true;
-            this.Player2.Location = new System.Drawing.Point(53, 216);
+            this.Player2.Location = new System.Drawing.Point(25, 207);
             this.Player2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Player2.Name = "Player2";
             this.Player2.Size = new System.Drawing.Size(42, 13);
@@ -166,8 +168,8 @@ namespace SetteEMezzo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 506);
-            this.Controls.Add(this.NextTurn);
+            this.ClientSize = new System.Drawing.Size(490, 506);
+            this.Controls.Add(this.PutCardOnTable);
             this.Controls.Add(this.PlayTheCard);
             this.Controls.Add(this.WhosTheTurn);
             this.Controls.Add(this.Tavolo);
@@ -195,6 +197,6 @@ namespace SetteEMezzo
         private System.Windows.Forms.ListBox OwnCardList;
         private System.Windows.Forms.Label WhosTheTurn;
         private System.Windows.Forms.Button PlayTheCard;
-        private System.Windows.Forms.Button NextTurn;
+        private System.Windows.Forms.Button PutCardOnTable;
     }
 }

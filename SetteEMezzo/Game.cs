@@ -22,6 +22,8 @@ namespace SetteEMezzo
 
         private void InitGame()
         {
+            PlayTheCard.Enabled = false;
+
             InitPresenceOfAllPlayer();
             DinamicStorePlayerLabel();
             ArrangementByNumberOfPlayers();
@@ -51,7 +53,7 @@ namespace SetteEMezzo
 
         private void DinamicStorePlayerLabel()
         {
-            Table.seatingLabel = new List<Label> {
+            Table.SeatingLabel = new List<Label> {
                 Player1,
                 Player2,
                 Player3,
@@ -88,8 +90,8 @@ namespace SetteEMezzo
 
         private void AssignSinglePlayerSeats(int seat)
         {
-            Table.seatingLabel[seat].Text = StatusGame.RegistredNames.ElementAt(index: Table.assignedSeats);
-            Table.seatingLabel[seat].Visible = true;
+            Table.SeatingLabel[seat].Text = StatusGame.RegistredNames.ElementAt(index: Table.assignedSeats);
+            Table.SeatingLabel[seat].Visible = true;
             Table.assignedSeats++;
         }
 
@@ -97,8 +99,10 @@ namespace SetteEMezzo
         {
             for (int seat = 0; seat < Table.seatingArrangement.Length; seat++)
             {
-                if (SeatIsSuitable(seat)) RegistreAPlayer(Table.seatingLabel[seat]);
+                if (SeatIsSuitable(seat)) RegistreAPlayer(Table.SeatingLabel[seat]);
             }
+
+            RegistreAPlayer(Master);
         }
 
         private void RegistreAPlayer(Label seat)
@@ -121,14 +125,25 @@ namespace SetteEMezzo
         private void ResetSession()
         {
             Table.Players.Clear();
-            Table.seatingLabel.Clear();
+            Table.SeatingLabel.Clear();
 
         }
 
-        private void NextTurn_Click(object sender, System.EventArgs e)
+        private void PlayTheCard_Click(object sender, System.EventArgs e)
         {
+            PlayTheCard.Enabled = false;
             GameLoop.DoNextTurnOperation();
+        }
 
+        private void OwnCardList_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            PlayTheCard.Enabled = true;
+        }
+
+        private void PutCardOnTable_Click(object sender, System.EventArgs e)
+        {
+            GameLoop.PlayerdrawsACard();
+            GameLoop.CheckIfPlayerExceededPoints();
         }
     }
 }

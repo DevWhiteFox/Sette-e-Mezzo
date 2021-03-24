@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace SetteEMezzo
 {
@@ -7,7 +8,9 @@ namespace SetteEMezzo
         public static ListBox OwnCardList;
         public static Label WhosTheTurn;
 
-        public static void LoadCardOfPlayer(Player player)
+        public static ListBox TableCardList;
+
+        public static void UpdateCardOfPlayer(Player player)
         {
             WhosTheTurn.Text = player.Name;
 
@@ -21,6 +24,22 @@ namespace SetteEMezzo
             }
 
             OwnCardList.EndUpdate();
+        }
+
+        public static void MakeBoldLabel(Label label)
+        {
+            if (!(label.Font.Bold))
+            {
+                label.Font = new Font(label.Font, FontStyle.Bold);
+            }
+        }
+
+        public static void MakeDefaultFontLabel(Label label)
+        {
+            if (label.Font.Bold)
+            {
+                label.Font = new Font(label.Font, FontStyle.Regular);
+            }
         }
 
     }

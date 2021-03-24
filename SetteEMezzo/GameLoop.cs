@@ -1,25 +1,53 @@
-﻿using System.Threading;
-
-namespace SetteEMezzo
+﻿namespace SetteEMezzo
 {
     public static class GameLoop
     {
-        public static byte PlayerTurn { get; set; } = 0;
+        public static byte CyclicTurnCounter { get; set; } = 0;
+        private static Player PlayerInTurn { get; set; } = Table.Players[CyclicTurnCounter];
 
         public static void DoNextTurnOperation()
         {
-            SelectPlayerToLoadCard();
+            RelievedOfOldPlayer();
+            RegistreActualPlayer();
+            LoadCardOfSelectedPlayer();
+            EvidenceLabelOf();
             CycleIncrement();
+        }
+
+        private static void RegistreActualPlayer()
+        {
+            PlayerInTurn = Table.Players[CyclicTurnCounter];
+        }
+
+        private static void LoadCardOfSelectedPlayer()
+        {
+            FormVisualOperation.UpdateCardOfPlayer(PlayerInTurn);
+        }
+
+        private static void EvidenceLabelOf()
+        {
+            FormVisualOperation.MakeBoldLabel(PlayerInTurn.OwnSeat);
         }
 
         private static void CycleIncrement()
         {
-            PlayerTurn = (byte)((PlayerTurn + 1) % StatusGame.RegistredNames.Count);
+            CyclicTurnCounter = (byte)((CyclicTurnCounter + 1) % Table.Players.Count);
         }
 
-        private static void SelectPlayerToLoadCard()
+        private static void RelievedOfOldPlayer()
         {
-            FormVisualOperation.LoadCardOfPlayer(Table.Players[PlayerTurn]);
+            FormVisualOperation.MakeDefaultFontLabel(PlayerInTurn.OwnSeat);
+        }
+
+        public static void CheckIfPlayerExceededPoints()
+        {
+            CardSystem.CalculatePlayerPoints(PlayerInTurn);
+        }
+
+        public static void PlayerdrawsACard()
+        {
+            PlayerInTurn.Cards.Add(CardSystem.ExtractRandomCard());
+            FormVisualOperation.UpdateCardOfPlayer(PlayerInTurn);
         }
     }
 }

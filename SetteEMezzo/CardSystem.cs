@@ -7,11 +7,12 @@ namespace SetteEMezzo
     public static class CardSystem
     {
         private static readonly List<Card> bancone = new List<Card>();
+        private static readonly Random random = new Random();
 
         public static void Start()
         {
             GenerateCard();
-            GiveOneCardToEachPlayers(5);
+            GiveOneCardToEachPlayers(1);
         }
 
         private static void GenerateCard()
@@ -32,12 +33,14 @@ namespace SetteEMezzo
 
         private static bool GiveOneCardToEachPlayers(int eachTime)
         {
-            Random random = new Random();
+            
             if (EnoughCardsForEveryone(eachTime))
             {
                 for (int i = 0; i < eachTime; i++)
-                    for (int j = 0; j < Table.Players.Count; j++)
-                        GiveCardToPlayerByIndex(random, j);
+                    foreach(Player player in Table.Players)
+                    {
+                        player.Cards.Add(ExtractRandomCard());
+                    }
 
                 return true;
             }
@@ -49,11 +52,39 @@ namespace SetteEMezzo
             return bancone.Count >= (Table.Players.Count * eachTime);
         }
 
-        private static void GiveCardToPlayerByIndex(Random random, int j)
+        public static Card ExtractRandomCard()
         {
             Card estratto = bancone.ElementAt(random.Next(0, bancone.Count));
             bancone.Remove(estratto);
-            Table.Players.ElementAt(j).Cards.Add(estratto);
+            return estratto;
+        }
+
+        public static void CalculatePlayerPoints(Player player)
+        {
+            float totalPoints = 0.0f;
+
+            List<Card> cards = player.Cards;
+            foreach(Card card in cards)
+            {
+                if(card.Numeration > StatusGame.MaxValidNumberOfPoint)
+                {
+                    totalPoints += 0.5f;
+                }
+                else
+                {
+                    totalPoints += card.Numeration;
+                }
+            }
+
+            Console.WriteLine(totalPoints);
+            if (totalPoints > 7.0f)
+            {
+                Console.WriteLine(player.Name + " Lose");
+            }
+            else if(totalPoints == 7.0f)
+            {
+                Console.WriteLine(player.Name + " WIN");
+            }
         }
     }
 }
