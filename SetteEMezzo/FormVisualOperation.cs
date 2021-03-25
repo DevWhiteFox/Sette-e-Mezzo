@@ -10,6 +10,10 @@ namespace SetteEMezzo
 
         public static ListBox TableCardList;
 
+        public static RichTextBox WinBanner;
+
+        public static Button PickCard { get; set; }
+
         public static void UpdateCardOfPlayer(Player player)
         {
             WhosTheTurn.Text = player.Name;
@@ -36,11 +40,29 @@ namespace SetteEMezzo
 
         public static void MakeDefaultFontLabel(Label label)
         {
-            if (label.Font.Bold)
+            if (label.Font.Bold || !label.Font.Strikeout)
             {
                 label.Font = new Font(label.Font, FontStyle.Regular);
             }
         }
 
+        public static void MakeStrikeThroughFontLabel(Label label)
+        {
+            if (!(label.Font.Strikeout))
+            {
+                label.Font = new Font(label.Font, FontStyle.Strikeout);
+            }
+        }        
+
+        public static void ShowBanner(string message)
+        {
+            WinBanner.Text = GameLoop.PlayerInTurn.Name + " " + message;
+            WinBanner.Visible = true;
+        }
+
+        public static void HideBanner()
+        {
+            WinBanner.Visible = false;
+        }
     }
 }

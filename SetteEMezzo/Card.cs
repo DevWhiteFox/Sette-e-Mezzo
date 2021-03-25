@@ -4,6 +4,6 @@
     {
         public char Seed { get; set; }
 
-        public int Numeration { get; set; }
+        public byte Numeration { get; set; }
     }
 }

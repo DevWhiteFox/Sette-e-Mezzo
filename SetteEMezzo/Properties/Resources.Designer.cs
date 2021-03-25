@@ -63,9 +63,9 @@ namespace SetteEMezzo.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hand_card {
+        internal static System.Drawing.Bitmap card {
             get {
-                object obj = ResourceManager.GetObject("hand_card", resourceCulture);
+                object obj = ResourceManager.GetObject("card", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace SetteEMezzo.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Hand_Holding_Playing_Cards_2_512 {
+        internal static System.Drawing.Bitmap hand {
             get {
-                object obj = ResourceManager.GetObject("Hand_Holding_Playing_Cards-2-512", resourceCulture);
+                object obj = ResourceManager.GetObject("hand", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,16 +86,6 @@ namespace SetteEMezzo.Properties {
         internal static System.Drawing.Bitmap icon {
             get {
                 object obj = ResourceManager.GetObject("icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Next {
-            get {
-                object obj = ResourceManager.GetObject("Next", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

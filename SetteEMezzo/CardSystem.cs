@@ -6,85 +6,79 @@ namespace SetteEMezzo
 {
     public static class CardSystem
     {
-        private static readonly List<Card> bancone = new List<Card>();
+        private static readonly List<Card> mazzo = new List<Card>();
         private static readonly Random random = new Random();
 
         public static void Start()
         {
             GenerateCard();
-            GiveOneCardToEachPlayers(1);
+            GiveOneToEachPlayers(1);
         }
 
         private static void GenerateCard()
         {
             foreach (char seed in StatusGame.Seed)
             {
-                for (int i = 1; i <= StatusGame.MaxNumberOfCard; i++)
+                for (byte i = 1; i <= StatusGame.MaxNumberOfCard; i++)
                 {
                     Card card = new Card
                     {
                         Seed = seed,
                         Numeration = i
                     };
-                    bancone.Add(card);
+                    mazzo.Add(card);
                 }
             }
         }
 
-        private static bool GiveOneCardToEachPlayers(int eachTime)
+        private static bool GiveOneToEachPlayers(int eachTime)
         {
-            
-            if (EnoughCardsForEveryone(eachTime))
+
+            if (EnoughForEveryone(eachTime))
             {
                 for (int i = 0; i < eachTime; i++)
-                    foreach(Player player in Table.Players)
+                    foreach (Player player in Table.Players)
                     {
-                        player.Cards.Add(ExtractRandomCard());
+                        player.TakeCard(ExtractRandom());
                     }
 
                 return true;
             }
             return false;
-        }   
-
-        private static bool EnoughCardsForEveryone(int eachTime)
-        {
-            return bancone.Count >= (Table.Players.Count * eachTime);
         }
 
-        public static Card ExtractRandomCard()
+        private static bool EnoughForEveryone(int eachTime)
         {
-            Card estratto = bancone.ElementAt(random.Next(0, bancone.Count));
-            bancone.Remove(estratto);
+            return mazzo.Count >= (Table.Players.Count * eachTime);
+        }
+
+        public static Card ExtractRandom()
+        {
+            Card estratto = mazzo.ElementAt(random.Next(0, mazzo.Count));
+            mazzo.Remove(estratto);
             return estratto;
         }
 
-        public static void CalculatePlayerPoints(Player player)
+        public static void CheckPlayerStatus()
         {
-            float totalPoints = 0.0f;
+            if(GameLoop.PlayerInTurn.Points > 7.5f)
+            {
+                PlayerLose();
+            }
+        }
 
-            List<Card> cards = player.Cards;
-            foreach(Card card in cards)
-            {
-                if(card.Numeration > StatusGame.MaxValidNumberOfPoint)
-                {
-                    totalPoints += 0.5f;
-                }
-                else
-                {
-                    totalPoints += card.Numeration;
-                }
-            }
+        private static void PlayerLose()
+        {
+            Player player = GameLoop.PlayerInTurn;
+            FormVisualOperation.MakeStrikeThroughFontLabel(player.OwnSeat);
+            FormVisualOperation.ShowBanner("HAI PERSO");
+            FormVisualOperation.PickCard.Enabled = false;
+            Table.Players.Remove(player);
+        }
 
-            Console.WriteLine(totalPoints);
-            if (totalPoints > 7.0f)
-            {
-                Console.WriteLine(player.Name + " Lose");
-            }
-            else if(totalPoints == 7.0f)
-            {
-                Console.WriteLine(player.Name + " WIN");
-            }
+        private static void PlayerWin()
+        {
+
         }
     }
 }

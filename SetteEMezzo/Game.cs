@@ -22,24 +22,24 @@ namespace SetteEMezzo
 
         private void InitGame()
         {
-            PlayTheCard.Enabled = false;
-
+            FormVisualOperationInit();
             InitPresenceOfAllPlayer();
             DinamicStorePlayerLabel();
-            ArrangementByNumberOfPlayers();
-            AssignSeatsOfAllPlayer();
-            InitOfPlayersPresent();
+            
+            Table.PreparesGameBoard();
+            Table.RegistreAPlayer(Master);
 
             CardSystem.Start();
 
-            FormVisualOperationInit();
-            GameLoop.DoNextTurnOperation();
+            GameLoop.UpdateFormAboutPlayer();
         }
 
         private void FormVisualOperationInit()
         {
             FormVisualOperation.OwnCardList = OwnCardList;
             FormVisualOperation.WhosTheTurn = WhosTheTurn;
+            FormVisualOperation.PickCard = PickCard;
+            FormVisualOperation.WinBanner = WinBanner;
         }
 
         private void InitPresenceOfAllPlayer()
@@ -62,88 +62,27 @@ namespace SetteEMezzo
             };
         }
 
-        private void ArrangementByNumberOfPlayers()
-        {
-            switch (StatusGame.RegistredNames.Count)
-            {
-                case 2: Table.seatingArrangement = "O#O#O"; break;
-                case 3: Table.seatingArrangement = "#O#O#"; break;
-                case 4: Table.seatingArrangement = "##O##"; break;
-                case 5: Table.seatingArrangement = "#####"; break;
-                default: Table.seatingArrangement = "OOOOO"; break;
-            }
-        }
-
-        private void AssignSeatsOfAllPlayer()
-        {
-            Table.assignedSeats = 0;
-            for (int seat = 0; seat < Table.seatingArrangement.Length; seat++)
-            {
-                if (SeatIsSuitable(seat)) AssignSinglePlayerSeats(seat);
-            }
-        }
-
-        private bool SeatIsSuitable(int seat)
-        {
-            return Table.seatingArrangement.Substring(seat, 1) == Table.SEAT_IS_AVAILABLE;
-        }
-
-        private void AssignSinglePlayerSeats(int seat)
-        {
-            Table.SeatingLabel[seat].Text = StatusGame.RegistredNames.ElementAt(index: Table.assignedSeats);
-            Table.SeatingLabel[seat].Visible = true;
-            Table.assignedSeats++;
-        }
-
-        private void InitOfPlayersPresent()
-        {
-            for (int seat = 0; seat < Table.seatingArrangement.Length; seat++)
-            {
-                if (SeatIsSuitable(seat)) RegistreAPlayer(Table.SeatingLabel[seat]);
-            }
-
-            RegistreAPlayer(Master);
-        }
-
-        private void RegistreAPlayer(Label seat)
-        {
-            Player player = new Player
-            {
-                Name = seat.Text,
-                OwnSeat = seat
-            };
-            Table.Players.Add(player);
-        }
-
-
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ResetSession();
+            Table.ResetSession();
             InstanceMenu.Show();
-        }
-
-        private void ResetSession()
-        {
-            Table.Players.Clear();
-            Table.SeatingLabel.Clear();
-
-        }
-
-        private void PlayTheCard_Click(object sender, System.EventArgs e)
-        {
-            PlayTheCard.Enabled = false;
-            GameLoop.DoNextTurnOperation();
         }
 
         private void OwnCardList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            PlayTheCard.Enabled = true;
+            PassTurn.Enabled = true;
+        }
+    
+        private void PassTurn_Click(object sender, System.EventArgs e)
+        {
+            GameLoop.DoNextTurnOperation();
+            PickCard.Enabled = true;
         }
 
-        private void PutCardOnTable_Click(object sender, System.EventArgs e)
+        private void PickCard_Click(object sender, System.EventArgs e)
         {
-            GameLoop.PlayerdrawsACard();
-            GameLoop.CheckIfPlayerExceededPoints();
+            GameLoop.PlayerDrawsACard();
+            CardSystem.CheckPlayerStatus();
         }
     }
 }

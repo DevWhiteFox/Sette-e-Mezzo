@@ -3,22 +3,56 @@
     public static class GameLoop
     {
         public static byte CyclicTurnCounter { get; set; } = 0;
-        private static Player PlayerInTurn { get; set; } = Table.Players[CyclicTurnCounter];
+        public static Player PlayerInTurn { get; set; } = null;
 
         public static void DoNextTurnOperation()
         {
             RelievedOfOldPlayer();
+            if(IsPlayerOutOfGame()) CycleIncrement();
+            UpdateFormAboutPlayer();
+        }
+
+        public static void UpdateFormAboutPlayer()
+        {
+            RipristineCounter();
             RegistreActualPlayer();
             LoadCardOfSelectedPlayer();
             EvidenceLabelOf();
-            CycleIncrement();
+        }
+
+        private static bool IsPlayerOutOfGame()
+        {
+            return !PlayerInTurn.OwnSeat.Font.Strikeout;
+        }
+
+        public static void CycleIncrement()
+        {
+            CyclicTurnCounter = (byte)((CyclicTurnCounter + 1) % Table.Players.Count);
+        }
+
+        private static void RipristineCounter()
+        {
+            if (IsCounterOverLimit())
+            {
+                CyclicTurnCounter = 0;
+            }
+        }
+
+        private static bool IsCounterOverLimit()
+        {
+            return CyclicTurnCounter > (Table.Players.Count);
+        }
+
+        private static void RelievedOfOldPlayer()
+        {
+            FormVisualOperation.MakeDefaultFontLabel(PlayerInTurn.OwnSeat);
         }
 
         private static void RegistreActualPlayer()
         {
             PlayerInTurn = Table.Players[CyclicTurnCounter];
         }
-
+       
         private static void LoadCardOfSelectedPlayer()
         {
             FormVisualOperation.UpdateCardOfPlayer(PlayerInTurn);
@@ -29,24 +63,9 @@
             FormVisualOperation.MakeBoldLabel(PlayerInTurn.OwnSeat);
         }
 
-        private static void CycleIncrement()
+        public static void PlayerDrawsACard()
         {
-            CyclicTurnCounter = (byte)((CyclicTurnCounter + 1) % Table.Players.Count);
-        }
-
-        private static void RelievedOfOldPlayer()
-        {
-            FormVisualOperation.MakeDefaultFontLabel(PlayerInTurn.OwnSeat);
-        }
-
-        public static void CheckIfPlayerExceededPoints()
-        {
-            CardSystem.CalculatePlayerPoints(PlayerInTurn);
-        }
-
-        public static void PlayerdrawsACard()
-        {
-            PlayerInTurn.Cards.Add(CardSystem.ExtractRandomCard());
+            PlayerInTurn.TakeCard(CardSystem.ExtractRandom());
             FormVisualOperation.UpdateCardOfPlayer(PlayerInTurn);
         }
     }

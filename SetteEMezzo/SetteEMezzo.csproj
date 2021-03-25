@@ -75,6 +75,11 @@
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
     <Compile Include="GameLoop.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StatusGame.cs" />
     <Compile Include="Lobby.cs">
       <SubType>Form</SubType>
@@ -103,14 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,12 +125,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource\Hand_Holding_Playing_Cards-2-512.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resource\icon.png" />
-    <None Include="Resource\Next.png" />
-    <None Include="Resource\hand_card.png" />
     <None Include="Resource\table.png" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +139,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\hand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\card.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
