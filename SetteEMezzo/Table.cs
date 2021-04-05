@@ -49,7 +49,7 @@ namespace SetteEMezzo
 
         private static void AssignSinglePlayerSeats(int seat)
         {
-            SeatingLabel[seat].Text = StatusGame.RegistredNames.ElementAt(index: Table.assignedSeats);
+            SeatingLabel[seat].Text = StatusGame.RegistredNames.ElementAt(index: assignedSeats);
             SeatingLabel[seat].Visible = true;
             assignedSeats++;
         }
@@ -76,6 +76,7 @@ namespace SetteEMezzo
         {
             Players.Clear();
             SeatingLabel.Clear();
+            GameLoop.CyclicTurnCounter = 0;
         }
     }
 }

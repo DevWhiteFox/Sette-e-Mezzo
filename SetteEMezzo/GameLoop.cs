@@ -7,14 +7,20 @@
 
         public static void DoNextTurnOperation()
         {
-            RelievedOfOldPlayer();
-            if(IsPlayerOutOfGame()) CycleIncrement();
-            UpdateFormAboutPlayer();
+            if (!IsPlayerOutOfGame())
+            {
+                RelievedOfOldPlayer();
+            }
+
+            CycleIncrement();
+            if (!IsCounterOverLimit()) 
+            { 
+                UpdateFormAboutPlayer(); 
+            }
         }
 
         public static void UpdateFormAboutPlayer()
         {
-            RipristineCounter();
             RegistreActualPlayer();
             LoadCardOfSelectedPlayer();
             EvidenceLabelOf();
@@ -22,25 +28,17 @@
 
         private static bool IsPlayerOutOfGame()
         {
-            return !PlayerInTurn.OwnSeat.Font.Strikeout;
+            return PlayerInTurn.OwnSeat.Font.Strikeout;
         }
 
         public static void CycleIncrement()
         {
-            CyclicTurnCounter = (byte)((CyclicTurnCounter + 1) % Table.Players.Count);
-        }
-
-        private static void RipristineCounter()
-        {
-            if (IsCounterOverLimit())
-            {
-                CyclicTurnCounter = 0;
-            }
+            CyclicTurnCounter += 1;
         }
 
         private static bool IsCounterOverLimit()
         {
-            return CyclicTurnCounter > (Table.Players.Count);
+            return CyclicTurnCounter == Table.Players.Count;
         }
 
         private static void RelievedOfOldPlayer()

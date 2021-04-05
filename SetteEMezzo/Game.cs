@@ -27,7 +27,6 @@ namespace SetteEMezzo
             DinamicStorePlayerLabel();
             
             Table.PreparesGameBoard();
-            Table.RegistreAPlayer(Master);
 
             CardSystem.Start();
 
@@ -77,6 +76,11 @@ namespace SetteEMezzo
         {
             GameLoop.DoNextTurnOperation();
             PickCard.Enabled = true;
+            if(GameLoop.CyclicTurnCounter == Table.Players.Count)
+            {
+                PassTurn.Enabled = false;
+                PickCard.Enabled = false;
+            }
         }
 
         private void PickCard_Click(object sender, System.EventArgs e)

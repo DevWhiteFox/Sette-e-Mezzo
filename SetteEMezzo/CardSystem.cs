@@ -7,7 +7,9 @@ namespace SetteEMezzo
     public static class CardSystem
     {
         private static readonly List<Card> mazzo = new List<Card>();
+        private static readonly List<Player> howWaitMaster = new List<Player>();
         private static readonly Random random = new Random();
+        private static readonly float LimitPoints = 7.5f;
 
         public static void Start()
         {
@@ -33,7 +35,6 @@ namespace SetteEMezzo
 
         private static bool GiveOneToEachPlayers(int eachTime)
         {
-
             if (EnoughForEveryone(eachTime))
             {
                 for (int i = 0; i < eachTime; i++)
@@ -61,9 +62,13 @@ namespace SetteEMezzo
 
         public static void CheckPlayerStatus()
         {
-            if(GameLoop.PlayerInTurn.Points > 7.5f)
+            if(GameLoop.PlayerInTurn.Points > LimitPoints)
             {
                 PlayerLose();
+            }
+            else if(GameLoop.PlayerInTurn.Points == LimitPoints)
+            {
+                PlayerWin();
             }
         }
 
@@ -73,12 +78,14 @@ namespace SetteEMezzo
             FormVisualOperation.MakeStrikeThroughFontLabel(player.OwnSeat);
             FormVisualOperation.ShowBanner("HAI PERSO");
             FormVisualOperation.PickCard.Enabled = false;
-            Table.Players.Remove(player);
         }
 
         private static void PlayerWin()
         {
-
+            Player player = GameLoop.PlayerInTurn;
+            FormVisualOperation.MakeBoldAndGreenLabel(player.OwnSeat);
+            FormVisualOperation.ShowBanner("HAI VINTO");
+            FormVisualOperation.PickCard.Enabled = false;
         }
     }
 }

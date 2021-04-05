@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SetteEMezzo
@@ -38,21 +39,28 @@ namespace SetteEMezzo
             }
         }
 
-        public static void MakeDefaultFontLabel(Label label)
+        public static void MakeBoldAndGreenLabel(Label label)
         {
-            if (label.Font.Bold || !label.Font.Strikeout)
-            {
-                label.Font = new Font(label.Font, FontStyle.Regular);
-            }
+            MakeBoldLabel(label);
+            label.ForeColor = Color.Green;
         }
-
+        
         public static void MakeStrikeThroughFontLabel(Label label)
         {
             if (!(label.Font.Strikeout))
             {
                 label.Font = new Font(label.Font, FontStyle.Strikeout);
             }
-        }        
+        }
+
+        public static void MakeDefaultFontLabel(Label label)
+        {
+            if (label.Font.Bold)
+            {
+                label.Font = new Font(label.Font, FontStyle.Regular);
+            }
+        }
+
 
         public static void ShowBanner(string message)
         {
