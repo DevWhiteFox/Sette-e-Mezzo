@@ -75,6 +75,13 @@
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
     <Compile Include="GameLoop.cs" />
+    <Compile Include="Jolly.cs" />
+    <Compile Include="JollyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JollyForm.Designer.cs">
+      <DependentUpon>JollyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,6 +106,9 @@
     <Compile Include="Table.cs" />
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JollyForm.resx">
+      <DependentUpon>JollyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lobby.resx">
       <DependentUpon>Lobby.cs</DependentUpon>

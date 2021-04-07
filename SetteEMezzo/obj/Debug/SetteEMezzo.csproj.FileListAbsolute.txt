@@ -46,3 +46,4 @@ C:\Users\david\Source\Repos\DevWhiteFox\Sette-e-Mezzo\SetteEMezzo\obj\Debug\Sett
 C:\Users\david\Source\Repos\DevWhiteFox\Sette-e-Mezzo\SetteEMezzo\bin\Debug\SetteEMezzo.exe.config
 C:\Users\david\Source\Repos\DevWhiteFox\Sette-e-Mezzo\SetteEMezzo\bin\Debug\SetteEMezzo.exe
 C:\Users\david\Source\Repos\DevWhiteFox\Sette-e-Mezzo\SetteEMezzo\bin\Debug\SetteEMezzo.pdb
+C:\Users\david\Source\Repos\DevWhiteFox\Sette-e-Mezzo\SetteEMezzo\obj\Debug\SetteEMezzo.JollyForm.resources

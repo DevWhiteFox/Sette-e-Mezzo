@@ -6,15 +6,37 @@ namespace SetteEMezzo
 {
     public static class CardSystem
     {
-        private static readonly List<Card> mazzo = new List<Card>();
-        private static readonly List<Player> howWaitMaster = new List<Player>();
-        private static readonly Random random = new Random();
+        private static readonly List<Card> Mazzo = new List<Card>();
+        private static readonly List<Player> HowWaitMaster = new List<Player>();
+        private static readonly Random Random = new Random();
         private static readonly float LimitPoints = 7.5f;
 
         public static void Start()
         {
-            GenerateCard();
-            GiveOneToEachPlayers(1);
+            //GenerateCard();
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+            Mazzo.Add(new Jolly());
+
+            GiveOneToEachPlayers(0);
         }
 
         private static void GenerateCard()
@@ -28,7 +50,7 @@ namespace SetteEMezzo
                         Seed = seed,
                         Numeration = i
                     };
-                    mazzo.Add(card);
+                    Mazzo.Add(card);
                 }
             }
         }
@@ -38,9 +60,19 @@ namespace SetteEMezzo
             if (EnoughForEveryone(eachTime))
             {
                 for (int i = 0; i < eachTime; i++)
-                    foreach (Player player in Table.Players)
+                    for (int j = 0; j < Table.Players.Count; j++)
                     {
-                        player.TakeCard(ExtractRandom());
+                        Player player = Table.Players[j];
+                        Card card = ExtractRandom();
+                        if (!CheckIfJolly(card))
+                        {
+                            player.TakeCard(card);
+                        }
+                        else
+                        {
+                            Mazzo.Add(card);
+                            j--;
+                        }
                     }
 
                 return true;
@@ -50,13 +82,13 @@ namespace SetteEMezzo
 
         private static bool EnoughForEveryone(int eachTime)
         {
-            return mazzo.Count >= (Table.Players.Count * eachTime);
+            return Mazzo.Count >= (Table.Players.Count * eachTime);
         }
 
         public static Card ExtractRandom()
         {
-            Card estratto = mazzo.ElementAt(random.Next(0, mazzo.Count));
-            mazzo.Remove(estratto);
+            Card estratto = Mazzo.ElementAt(Random.Next(0, Mazzo.Count));
+            Mazzo.Remove(estratto);
             return estratto;
         }
 
@@ -86,6 +118,11 @@ namespace SetteEMezzo
             FormVisualOperation.MakeBoldAndGreenLabel(player.OwnSeat);
             FormVisualOperation.ShowBanner("HAI VINTO");
             FormVisualOperation.PickCard.Enabled = false;
+        }
+
+        public static bool CheckIfJolly(Card card)
+        {
+            return card.Seed == StatusGame.JollySeed;
         }
     }
 }

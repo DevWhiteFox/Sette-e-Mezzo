@@ -63,7 +63,17 @@
 
         public static void PlayerDrawsACard()
         {
-            PlayerInTurn.TakeCard(CardSystem.ExtractRandom());
+            Card card = CardSystem.ExtractRandom();
+            
+
+            if (CardSystem.CheckIfJolly(card))
+            {
+                JollyForm jollyForm = new JollyForm();
+                jollyForm.TakeCard(card);
+                jollyForm.ShowDialog();
+            }
+
+            PlayerInTurn.TakeCard(card);
             FormVisualOperation.UpdateCardOfPlayer(PlayerInTurn);
         }
     }
